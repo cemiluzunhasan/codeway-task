@@ -9,11 +9,11 @@ let store = null;
 
 if (process.env.NODE_ENV === 'production') {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  store = createStore(reducer, composeEnhancers(
+  store = createStore(combineReducers({ auth, global }), composeEnhancers(
     applyMiddleware(thunk)
   ));
 } else {
-  store = createStore(combineReducers({ auth, global }), applyMiddleware(thunk));
+  store = createStore(combineReducers({ auth, global }), applyMiddleware(thunk, logger));
 }
 
 
