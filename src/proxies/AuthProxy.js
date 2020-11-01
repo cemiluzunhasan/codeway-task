@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import axios from 'axios';
 
 export default class AuthProxy {
   constructor(email, password) {
@@ -6,18 +7,24 @@ export default class AuthProxy {
     this.password = password;
   }
 
-  login(callback) {
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(data => {
-      notification.success({ message: 'Login başarılı' });
-      callback(data);
-    }).catch(err => {
-      notification.error({ message: "Hata" + err.toString() })
+  login() {
+    return new Promise((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(data => {
+        firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+          localStorage.setItem('idToken', idToken);
+          resolve(data);
+        })
+      }).catch(err => {
+        notification.error({ message: "Hata" + err.toString() });
+        reject(err);
+      })
     })
   }
-  
+
   logout() {
-    firebase.auth().logout().them(data => {
-      localStorage.removeItem('token');
+    firebase.auth().signOut().then(data => {
+      localStorage.removeItem('idToken');
+      delete axios.defaults.headers.common["Authorization"];
       window.location.replace('/auth/login');
     }).catch(err => {
       notification.error({ message: `Error ${err.toString()}` });

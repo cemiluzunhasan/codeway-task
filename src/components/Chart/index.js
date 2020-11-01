@@ -40,17 +40,17 @@ export default ({ label, url, stateKey }) => {
     }
     setChartData(chartData);
   }, data);
-
+  
   return (
     <div className="Chart full-width bg-card p-20 h-400">
       <div className="ChartHeader d-flex">
-        <i class="fas fa-chart-bar mr-10 text-pink"></i>
+        <i className="fas fa-chart-bar mr-10 text-pink"></i>
         <p className="text-xl text-white fw-200 ls-1">{label}</p>
       </div>
       <Spin spinning={loading}>
         <Line
           legend={false}
-          height={45}
+          height={230}
           ref={chartRef}
           data={chartData}
           options={chartOptions}

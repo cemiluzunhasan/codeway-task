@@ -1,16 +1,23 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-
-const menu = (
-  <Menu>
-    <Menu.Item className="pl-20 pr-20">
-      Logout
-    </Menu.Item>
-  </Menu>
-);
+import AuthProxy from '../../proxies/AuthProxy';
 
 export default () => {
+  const history = useHistory();
+  const menu = (
+    <Menu>
+      <Menu.Item className="pl-20 pr-20" onClick={() => history.push('/dashboard/profile') }>
+        <i className="fas fa-user mr-5" />
+        Profile
+      </Menu.Item>
+      <Menu.Item className="pl-20 pr-20" onClick={() => new AuthProxy().logout()}>
+        <i className="fas fa-sign-out-alt mr-5" />
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <div className="d-flex full-width full-height j-between a-center">
       <img src="/assets/hedwig-logo.png" className="w-150" />

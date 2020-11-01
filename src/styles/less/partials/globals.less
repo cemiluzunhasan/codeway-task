@@ -1,6 +1,10 @@
 .d-flex {
   display: flex;
 }
+.d-iblock {
+  display: inline-block;
+}
+
 
 .fd-column {
   flex-direction: column;
@@ -42,7 +46,27 @@
 }
 
 .bg-card {
-  background: @colors[cardbg];
+  background: @colors[cardbg] !important;
+  transition: .3s all;
+  &:hover {
+    background: lighten(@colors[cardbg], 5%) !important;
+  }
+}
+
+.c-pointer {
+  cursor: pointer;
+
+  i, span {
+    transition: .5s all;
+  }
+  &:hover {
+    i, span {
+      color: lighten(@colors[grey], 20%) !important;
+    }
+    i {
+      transform: rotateZ(360deg);
+    }
+  }
 }
 
 .generate-spacing(@direction, @d, @n, @i: 0) when (@i =< @n) {

@@ -5,7 +5,7 @@ import HedwigHeader from '../../components/Layout/HedwigHeader';
 import StatCard from '../../components/StatCard';
 
 export default () => {
-  const { Header, Content, Footer } = Layout;
+  const { Header, Content } = Layout;
   return (
     <div className="Dashboard">
       <Header className="d-flex a-center">
@@ -26,20 +26,17 @@ export default () => {
             <StatCard url="rt/paidUsers" stateKey="paidUsers" icon={<i className="StatIcon fas fa-download bg-red text-white" />} title="Paying Users" amount={1234} refreshText="Total paying user count" />
           </Col>
         </Row>
-        <Row className="mb-30">
+        <Row className="mb-30" gutter={30}>
           <Col span={24}>
             <Graph id="activeChart" label="Daily Active Users" url="daily/activeUsers" stateKey="chartActiveUsers" />
           </Col>
         </Row>
-        <Row>
+        <Row className="mb-30" gutter={30}>
           <Col span={24}>
             <Graph id="installChart" label="Daily Installs" url="daily/downloads" stateKey="chartDownloads" />
           </Col>
         </Row>
       </Content>
-      <Footer>
-        Footer
-      </Footer>
     </div>
   );
 }

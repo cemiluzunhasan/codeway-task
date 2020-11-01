@@ -22,5 +22,9 @@ export default {
   chartDownloads: {
     data: null,
     loading: false
+  },
+  profile: {
+    data: null,
+    loading: false
   }
 }

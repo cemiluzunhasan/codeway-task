@@ -1,4 +1,5 @@
 export const chartOptions = {
+  maintainAspectRatio: false,
   scales: {
     xAxes: [{
       gridLines: {
