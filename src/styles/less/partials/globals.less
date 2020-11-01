@@ -1,4 +1,74 @@
-* {
-  color: red;
-  text-align: center;
+.d-flex {
+  display: flex;
 }
+
+.fd-column {
+  flex-direction: column;
+}
+
+.j-center {
+  justify-content: center;
+}
+
+.j-between {
+  justify-content: space-between;
+}
+
+.a-center {
+  align-items: center;
+}
+.a-end {
+  align-items: flex-end;
+}
+
+.bg-navyblue {
+  background: @colors[navyblue];
+}
+
+.bg-deepblush {
+  background: @colors[deepblush];
+}
+
+.bg-pink {
+  background: @colors[pink];
+}
+
+.bg-red {
+  background: @colors[red];
+}
+
+.bg-lightblue {
+  background: @colors[lightblue];
+}
+
+.bg-card {
+  background: @colors[cardbg];
+}
+
+.generate-spacing(@direction, @d, @n, @i: 0) when (@i =< @n) {
+  .m@{d}-@{i} {
+    margin-@{direction}: ~"@{i}px" !important;
+  }
+  .p@{d}-@{i} {
+    padding-@{direction}: ~"@{i}px";
+  }
+  .m-@{i} {
+    margin: ~"@{i}px" !important;
+  }
+  .p-@{i} {
+    padding: ~"@{i}px";
+  }
+  .generate-spacing(@direction, @d, @n, (@i + 5));
+}
+.generate-spacing(top, t, 100);
+.generate-spacing(bottom, b, 100);
+.generate-spacing(left, l, 100);
+.generate-spacing(right, r, 100);
+
+.generate-widths(@n, @i: 0) when (@i =< @n) {
+  .w-@{i} {
+    width: ~"@{i}px";
+  }
+  .generate-widths(@n, (@i + 50));
+}
+.generate-widths(500);
